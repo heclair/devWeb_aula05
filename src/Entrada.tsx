@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import contexto from "./Contexto";
 
-export default function Entrada({add}:any) {
+export default function Entrada() {
     const [nome, setNome] = useState("");
+    const {add} = useContext(contexto);
+
   return (
     <div>
       <label>Nome</label>

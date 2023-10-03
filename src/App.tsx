@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Entrada from "./Entrada";
+import Lista from "./Lista";
+import Contexto from "./Contexto";
 
 export default App;
 function App() {
@@ -9,23 +11,13 @@ function App() {
   function add(nome:string) {
     const temp = [...lista, nome];
     setLista(temp);
-    console.log(lista, temp);
+    console.log(temp);
   }
 
   return (
-    <div>
-      <Entrada add={add} />
-      {
-        lista.length > 0 && 
-        <div>
-          <p>Quantidade: {lista.length}</p>
-          <ol>
-            {lista.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ol>
-        </div>
-      }
-    </div>
+    <Contexto.Provider value ={{lista,add}}>
+      <Entrada />
+      <Lista />
+    </Contexto.Provider>
   );
 }
